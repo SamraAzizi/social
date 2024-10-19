@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse 
 
 # Create your views here.
 
 def index(request):
-    return httpResponse('<h1> Welcome to Social App</h1>')
+    return HttpResponse('<h1> Welcome to Social App</h1>')
