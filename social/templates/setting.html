@@ -23,7 +23,7 @@
 
           
 
-            <div class="container m-auto"> 
+    <div class="container m-auto"> 
 
                 <h1 class="text-2xl leading-none text-gray-900 tracking-tight mt-3"><a href="/">Home</a> / Account Setting for <b>{{user.username}}</b> </h1>
                 <!-- <ul class="mt-5 -mr-3 flex-nowrap lg:overflow-hidden overflow-x-scroll uk-tab">
@@ -35,21 +35,30 @@
                     <li><a href="#">Billing</a></li>
                     <li><a href="#">Security</a></li>
                 </ul> -->
-                <br>
-                <hr>
-                <div class="grid lg:grid-cols-3 mt-12 gap-8">
-                    <div>
+        <br>
+        <hr>
+
+        {% if messages %}
+        <div class="mt-4">
+            {% for message in messages %}
+            <div class="p-4 {% if message.tags == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %} rounded">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="grid lg:grid-cols-3 mt-12 gap-8">
+            <div>
                         <h3 class="text-xl mb-2"> General</h3>
                         <p></p>
-                    </div>
-                    <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
+            </div>
+            <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
                         
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                       <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                           
-                           
-                            <div class="col-span-2">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                        <div class="col-span-2">
                                 <label for=""> Profile Image</label>
                                 <img width="100" height="100" src="{{user_profile.profileimg.url}}" />
                                 <input type="file" name="image" value="" class="shadow-none bg-gray-100">
@@ -120,7 +129,7 @@
                             <div>
                                 <h4> Allow Commenting?</h4>
                                 <div>  </div>
-                            </div>
+                    </div>
                             <div class="switches-list -mt-8 is-large">
                                 <div class="switch-container">
                                     <label class="switch"><input type="checkbox"><span class="switch-button"></span> </label>
@@ -135,9 +144,7 @@
                 </div>
 
             </div>
-            
         </div>
-
     </div>
 
 
@@ -154,5 +161,4 @@
 
     <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
 </body>
-
 </html>
